@@ -13,26 +13,31 @@ if __name__ == '__main__':
     # 1、关于Dataframe的构建和相关方法
     stock_dataframe=pd.DataFrame(stock_day_change)
     # print(stock_dataframe.head())
+
     # 1.1 直接添加行索引
     stock_symbols=['Stock'+str(i) for i in range(0,stock_cnt)]
     stock_dataframe=pd.DataFrame(stock_day_change,index=stock_symbols)
     # print(stock_dataframe.head())
+
     # 1.2 直接添加列索引
     days=pd.date_range('2017-01-01',periods=view_days,freq='1D')
     stock_dataframe=pd.DataFrame(stock_day_change,index=stock_symbols,columns=days)
     # print(stock_dataframe.head())
+
     # 1.3.1 DataFrame的转置
     stock_dataframe=stock_dataframe.T
     # print(stock_dataframe)
     # 1.3.2 Dataframe的重采样
     stock_dataframe_resample=stock_dataframe.resample('21D').mean()
     # print(stock_dataframe_resample)
+
     # 1.4 Series,可以理解为只有一列的Dataframe
     stock_series=stock_dataframe['Stock0']
     # print(stock_series.head())
     # 顺手直接利用pandas直接画图
     stock_series.cumsum().plot()
     # plt.show()
+
     # 1.5 重采样数据
     stock_0_series=stock_dataframe['Stock0']
     # 这里ohlc指open，highest，lowest，close四个值
@@ -75,6 +80,7 @@ if __name__ == '__main__':
 
     # 2.4.1 数据序列排序,通过by来选择按照哪一列，通过ascending来指定排序方向
     print(tsla_df.sort_index(by='p_change')[:5])
+    # print(tsla_df.sort_values(by='p_change',inplace=True))
     # 2.4.2 处理丢失数据,丢弃drop，或者填充fill
     tsla_df=tsla_df.dropna(how='all')
     # inplace表示不用返回新的序列，就在原始序列上修改

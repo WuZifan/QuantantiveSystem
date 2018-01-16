@@ -98,6 +98,7 @@ if __name__ == '__main__':
     print(stock_last2)
     print(np.maximum(stock_temp,stock_last2))
     print(np.minimum(stock_temp,stock_last2))
+
     # 8.4 重复的值只留下一个，和set功能类似
     print(np.unique(np.array([1,1,0,0,0,2])))
     # 8.5 计算差值，axis=0表示比较行之间不同，axis=1表示比较列之间不同
@@ -105,6 +106,7 @@ if __name__ == '__main__':
     print(stock_temp)
     print(np.diff(stock_temp))
     print(np.diff(stock_temp,axis=0))
+
     # 8.6 np的三目表达式，如果条件成立，执行状况1，否则执行状况2
     # 条件成立就赋值为1，不然赋值为0
     print(np.where(stock_last2>0.5,1,0))
